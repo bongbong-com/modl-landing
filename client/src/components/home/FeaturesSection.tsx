@@ -1,12 +1,15 @@
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, ChevronDown, X, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-// Define the features array
+// Define the features array with detailed content
 const features = [
   {
     icon: "shield-check",
     title: "Dynamic Punishments",
     description: "Create customizable punishment systems that scale with player behavior patterns.",
+    expandedContent: "Our dynamic punishment system automatically escalates consequences based on a player's history. First offenses might receive warnings, while repeat offenders face more severe actions. You can customize escalation paths for different violation types, set time decay for older infractions, and ensure consistency across your entire moderation team. This system dramatically reduces repeat offenses and creates a fairer experience for your community.",
     bgColor: "bg-primary/20",
     textColor: "text-primary"
   },
@@ -14,6 +17,7 @@ const features = [
     icon: "link",
     title: "Account Linking",
     description: "Seamlessly connect player accounts across platforms for comprehensive moderation.",
+    expandedContent: "Link player identities across Discord, Steam, Xbox, PlayStation and more to maintain a unified moderation record. Prevent banned players from evading punishments with new accounts, and let players access support from any platform. Our API handles the complex identity verification and merging, while giving you complete control over permission levels and cross-platform capabilities.",
     bgColor: "bg-accent/20",
     textColor: "text-accent"
   },
@@ -21,6 +25,7 @@ const features = [
     icon: "headphones",
     title: "Support Tickets",
     description: "Integrated ticketing system for player reports, appeals, and bug submissions.",
+    expandedContent: "Our comprehensive ticket system handles player reports, chat reports, bug reports, and punishment appeals through a unified interface. Staff can assign tickets, track resolution status, and maintain detailed logs. Players can submit tickets directly from within your game or through connected platforms like Discord. Customizable templates and automated responses help streamline common request types.",
     bgColor: "bg-green-500/20",
     textColor: "text-green-500"
   },
@@ -28,6 +33,7 @@ const features = [
     icon: "bot",
     title: "AI Auto-Moderation",
     description: "Advanced AI systems that detect and respond to toxic behavior in real-time.",
+    expandedContent: "Our AI auto-moderation detects toxic language, spam, and harassment in real-time. Unlike basic keyword filters, our system understands context and can be fine-tuned to match your community standards. It learns from moderator actions to improve over time and can automatically handle routine violations while escalating complex cases to your team. Premium users get access to the latest language models for even more accurate detection.",
     bgColor: "bg-primary/20",
     textColor: "text-primary"
   },
@@ -35,6 +41,7 @@ const features = [
     icon: "globe",
     title: "Web Integration",
     description: "Embed moderation interfaces directly within your game for seamless player experience.",
+    expandedContent: "We provide SDKs for Unity, Unreal Engine, and other popular game engines to embed moderation interfaces directly in your game. Players can submit reports, check their status, and appeal decisions without leaving your game. Custom UI components can be styled to match your game's aesthetic perfectly. For web-based or mobile games, our responsive design ensures a great experience across all devices.",
     bgColor: "bg-accent/20",
     textColor: "text-accent"
   },
@@ -42,16 +49,10 @@ const features = [
     icon: "layout-dashboard",
     title: "Analytics Dashboard",
     description: "Comprehensive reports and insights on community health and moderator activity.",
+    expandedContent: "Our analytics dashboard gives you deep insights into your community's health. Track moderation trends over time, identify problem areas, measure moderator performance, and detect patterns of toxic behavior. Custom reports can be scheduled and exported for team reviews. Use data-driven insights to make informed decisions about your moderation policies and community management strategies.",
     bgColor: "bg-green-500/20",
     textColor: "text-green-500"
   }
-];
-
-const integrationFeatures = [
-  "Simple API endpoints for core functionality",
-  "Unity, Unreal, and web SDK support",
-  "Customizable UI components",
-  "Webhook integration for real-time events"
 ];
 
 // Icon mapping
@@ -98,30 +99,17 @@ const getIcon = (iconName: string) => {
   }
 };
 
-// Feature card container animation
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-// Feature card item animation
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
 export default function FeaturesSection() {
+  const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
+
+  const toggleFeature = (index: number) => {
+    if (expandedFeature === index) {
+      setExpandedFeature(null);
+    } else {
+      setExpandedFeature(index);
+    }
+  };
+
   return (
     <section id="features" className="py-20 bg-card/50 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-background to-transparent"></div>
@@ -142,30 +130,87 @@ export default function FeaturesSection() {
           </p>
         </motion.div>
         
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div 
               key={index}
-              className="bg-card rounded-xl border border-gray-800 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1"
-              variants={itemVariants}
+              className={`bg-card rounded-xl border ${expandedFeature === index ? 'border-primary shadow-lg shadow-primary/10' : 'border-gray-800'} p-6 transition-all duration-300`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
             >
-              <div className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4`}>
-                <span className={feature.textColor}>
-                  {getIcon(feature.icon)}
-                </span>
+              <div className="flex justify-between items-start">
+                <div className={`w-12 h-12 ${feature.bgColor} rounded-lg flex items-center justify-center mb-4`}>
+                  <span className={feature.textColor}>
+                    {getIcon(feature.icon)}
+                  </span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                  onClick={() => toggleFeature(index)}
+                >
+                  {expandedFeature === index ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                </Button>
               </div>
               <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
+              
+              <AnimatePresence>
+                {expandedFeature === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-4 mt-4 border-t border-gray-800">
+                      <p className="text-foreground">
+                        {feature.expandedContent}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
         
+        {/* Integration Features */}
+        <motion.div 
+          className="mt-20 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="bg-card rounded-xl border border-gray-800 p-8 text-center">
+            <h3 className="text-2xl font-bold mb-6">Easy Integration with Your Games</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { text: "Simple API endpoints for core functionality", delay: 0.1 },
+                { text: "Unity, Unreal, and web SDK support", delay: 0.2 },
+                { text: "Customizable UI components", delay: 0.3 },
+                { text: "Webhook integration for real-time events", delay: 0.4 }
+              ].map((item, index) => (
+                <motion.div 
+                  key={index} 
+                  className="flex items-center"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: item.delay }}
+                >
+                  <Check className="text-green-500 mt-0.5 mr-2 shrink-0" />
+                  <span className="text-left">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
