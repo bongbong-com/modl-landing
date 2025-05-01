@@ -166,47 +166,6 @@ export default function FeaturesSection() {
           ))}
         </motion.div>
         
-        <motion.div 
-          className="mt-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="bg-card rounded-2xl border border-gray-800 overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="p-8 md:p-12 flex flex-col justify-center">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Seamless In-Game Integration</h3>
-                <p className="text-muted-foreground mb-6">
-                  Our API and SDK solutions make it easy to integrate moderation tools directly into your game experience. Players can report issues without leaving your game, and moderators can respond quickly.
-                </p>
-                <ul className="space-y-3">
-                  {integrationFeatures.map((feature, index) => (
-                    <motion.li 
-                      key={index} 
-                      className="flex items-start"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.3 + (index * 0.1) }}
-                    >
-                      <Check className="text-green-500 mt-1 mr-2" />
-                      <span>{feature}</span>
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-              <div className="relative lg:h-auto">
-                <img 
-                  src="https://images.unsplash.com/photo-1542751110-97427bbecf20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Esports team at gaming event" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-background via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-background"></div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

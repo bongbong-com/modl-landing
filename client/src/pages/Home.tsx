@@ -6,7 +6,6 @@ import AIFeaturesSection from "@/components/home/AIFeaturesSection";
 import PricingSection from "@/components/home/PricingSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import FAQSection from "@/components/home/FAQSection";
-import CTASection from "@/components/home/CTASection";
 import Footer from "@/components/home/Footer";
 import { Particles } from "@/components/ui/particles";
 
@@ -24,11 +23,8 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <FeaturesSection />
-      <AIFeaturesSection />
       <PricingSection />
-      <TestimonialsSection />
       <FAQSection />
-      <CTASection />
       <Footer />
     </div>
   );

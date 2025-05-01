@@ -1,7 +1,7 @@
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Check, ArrowDown } from "lucide-react";
+import { Check, ArrowDown, Shield, ShieldCheck, Users, MessageSquare } from "lucide-react";
 
 export default function HeroSection() {
   const [, navigate] = useLocation();
@@ -19,15 +19,19 @@ export default function HeroSection() {
 
   return (
     <section id="top" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
+      {/* Background gradients */}
+      <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full filter blur-3xl"></div>
+      <div className="absolute top-40 -left-40 w-80 h-80 bg-green-500/10 rounded-full filter blur-3xl"></div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div 
             className="perspective-container"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <div className="space-y-6 transform transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
+            <div className="space-y-6">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
                 <span>Next-Gen </span>
                 <span className="bg-gradient-to-r from-primary via-accent to-green-500 text-transparent bg-clip-text bg-[length:200%_auto] animate-gradient">
@@ -35,16 +39,16 @@ export default function HeroSection() {
                 </span>
                 <span> & Player Support</span>
               </h1>
-              <p className="text-xl text-muted-foreground max-w-lg">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Handle player reports, moderation, and support tickets with our all-in-one platform designed specifically for game developers.
               </p>
-              <div className="flex flex-wrap gap-4 pt-3">
+              <div className="flex flex-wrap gap-4 pt-3 justify-center">
                 <Button 
                   size="lg" 
                   className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 hover:scale-105 transition-transform" 
                   onClick={goToRegistration}
                 >
-                  Get Started for Free
+                  Register Your Server for Free
                 </Button>
                 <Button 
                   size="lg" 
@@ -56,54 +60,59 @@ export default function HeroSection() {
                   <ArrowDown className="h-4 w-4" />
                 </Button>
               </div>
-              <div className="pt-5 flex items-center gap-2 text-muted-foreground">
+              <div className="pt-5 flex items-center gap-2 text-muted-foreground justify-center">
                 <Check className="text-green-500" />
-                <span>No credit card required for free plan</span>
+                <span>Free forever, no card or gimmicks</span>
               </div>
             </div>
           </motion.div>
-          
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full filter blur-3xl"></div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-green-500/20 rounded-full filter blur-3xl"></div>
-            <motion.div 
-              className="relative bg-card p-4 rounded-2xl border border-gray-800 shadow-2xl"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                alt="Gaming setup with RGB lighting" 
-                className="w-full h-auto rounded-lg"
-              />
-              <div className="absolute bottom-0 left-0 w-full p-5 bg-gradient-to-t from-black to-transparent">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs text-muted-foreground">INTEGRATED MODERATION</div>
-                    <div className="text-foreground font-medium">Seamless in-game web integration</div>
-                  </div>
-                  <div className="flex space-x-2">
-                    <motion.div 
-                      className="w-3 h-3 bg-green-500 rounded-full"
-                      animate={{ opacity: [1, 0.5, 1] }}
-                      transition={{ repeat: Infinity, duration: 2 }}
-                    ></motion.div>
-                    <motion.div 
-                      className="w-3 h-3 bg-primary rounded-full"
-                      animate={{ opacity: [1, 0.5, 1] }}
-                      transition={{ repeat: Infinity, duration: 3 }}
-                    ></motion.div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
+        
+        {/* Feature cards replacing the image */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          {[
+            { 
+              icon: <Shield className="h-6 w-6" />, 
+              title: "Auto Moderation", 
+              desc: "AI-powered chat and behavior monitoring" 
+            },
+            { 
+              icon: <ShieldCheck className="h-6 w-6" />, 
+              title: "Dynamic Punishments", 
+              desc: "Escalating penalties based on violation history" 
+            },
+            { 
+              icon: <Users className="h-6 w-6" />, 
+              title: "Account Linking", 
+              desc: "Connect in-game identities with Discord & more" 
+            },
+            { 
+              icon: <MessageSquare className="h-6 w-6" />, 
+              title: "Support Tickets", 
+              desc: "In-game reporting system for players" 
+            }
+          ].map((item, index) => (
+            <motion.div 
+              key={index}
+              className="bg-card/60 backdrop-blur-sm rounded-xl border border-gray-800 p-6 hover:border-primary/50 transition-colors hover:shadow-lg hover:shadow-primary/5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 + (index * 0.1) }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 text-primary">
+                {item.icon}
+              </div>
+              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+              <p className="text-muted-foreground text-sm">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
         
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
