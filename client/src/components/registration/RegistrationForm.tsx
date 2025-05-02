@@ -16,9 +16,8 @@ import SuccessModal from "./SuccessModal";
 
 const registrationSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
-  serverName: z.string().min(1, { message: "Server name is required" }),
-  customDomain: z.string().optional(),
-  plan: z.enum(["free", "premium"]),
+  serverName: z.string().min(3, { message: "Server name is required (min 3 characters)" }),
+  customDomain: z.string().min(3, { message: "Subdomain is required (min 3 characters)" }),
   agreeTerms: z.literal(true, {
     errorMap: () => ({ message: "You must agree to the terms to continue" }),
   }),
@@ -87,27 +86,12 @@ export default function RegistrationForm() {
         </div>
       </nav>
       
-      <div className="flex-grow grid grid-cols-1 lg:grid-cols-2">
-        <div className="hidden lg:block relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 opacity-20"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-            alt="Gaming setup with colorful RGB lighting" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-          <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full max-w-md px-8">
-            <div className="text-4xl font-bold mb-4">Join the revolution in game moderation</div>
-            <div className="text-muted-foreground">Set up your moderation system in minutes, not months.</div>
-          </div>
-        </div>
-        
         <div className="flex items-center justify-center p-4 sm:p-8 lg:p-12">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-2">Create your account</h2>
+              <h2 className="text-3xl font-bold mb-2">Register your server</h2>
               <p className="text-muted-foreground">
-                Get started with your free modl account
+                Create a panel for your server and start using in minutes.
               </p>
             </div>
             
@@ -143,7 +127,7 @@ export default function RegistrationForm() {
                       </FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="My Awesome Game"
+                          placeholder="My Awesome Server"
                           {...field}
                           className="px-4 py-3 rounded-md bg-card/50 border border-gray-700 text-foreground focus:outline-none focus:border-primary"
                         />
@@ -159,12 +143,12 @@ export default function RegistrationForm() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>
-                        Custom Domain <span className="text-muted-foreground text-xs">(optional)</span>
+                        Panel Subdomain <span className="text-red-500">*</span>
                       </FormLabel>
                       <div className="flex">
                         <FormControl>
                           <Input
-                            placeholder="yourcompany"
+                            placeholder="yourserver"
                             {...field}
                             className="px-4 py-3 rounded-l-md bg-card/50 border border-gray-700 text-foreground focus:outline-none focus:border-primary"
                           />
@@ -173,40 +157,7 @@ export default function RegistrationForm() {
                           .modl.gg
                         </div>
                       </div>
-                      <p className="text-muted-foreground text-xs mt-1">You can also use your own domain later</p>
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="plan"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Select Plan</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-                        >
-                          <div className={`relative p-4 rounded-md border ${field.value === 'free' ? 'border-primary' : 'border-gray-700'} bg-card/50 hover:bg-card/80 transition-colors cursor-pointer`}>
-                            <RadioGroupItem value="free" id="free-plan" className="absolute right-4 top-4 opacity-0" />
-                            <Label htmlFor="free-plan" className="cursor-pointer">
-                              <div className="font-medium">Free Plan</div>
-                              <div className="text-sm text-muted-foreground mt-1">$0/month</div>
-                            </Label>
-                          </div>
-                          
-                          <div className={`relative p-4 rounded-md border ${field.value === 'premium' ? 'border-primary' : 'border-gray-700'} bg-card/50 hover:bg-card/80 transition-colors cursor-pointer`}>
-                            <RadioGroupItem value="premium" id="premium-plan" className="absolute right-4 top-4 opacity-0" />
-                            <Label htmlFor="premium-plan" className="cursor-pointer">
-                              <div className="font-medium">Premium Plan</div>
-                              <div className="text-sm text-muted-foreground mt-1">$20/month</div>
-                            </Label>
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
+                      <p className="text-muted-foreground text-xs mt-1">You can setup your own custom domain after registration</p>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -243,15 +194,10 @@ export default function RegistrationForm() {
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3" 
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Creating Account..." : "Create Account"}
+                  {isSubmitting ? "Registering..." : "Register"}
                 </Button>
               </form>
             </Form>
-            
-            <div className="mt-8 text-center text-muted-foreground">
-              Already have an account? <a href="#" className="text-primary hover:text-primary/80">Sign in</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
