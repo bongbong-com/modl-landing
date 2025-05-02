@@ -87,11 +87,13 @@ function Particle({
   const controls = useAnimation();
 
   useEffect(() => {
+    let isMounted = true;
+
     const animate = async () => {
-      while (true) {
+      while (isMounted) {
         const randomX = x + (Math.random() - 0.5) * staticity;
         const randomY = y + (Math.random() - 0.5) * staticity;
-        
+
         await controls.start({
           x: randomX,
           y: randomY,
@@ -99,8 +101,12 @@ function Particle({
         });
       }
     };
-    
+
     animate();
+
+    return () => {
+      isMounted = false; // tried to fix error but idk if theres a better way
+    };
   }, [x, y, controls, delay, duration, ease, staticity]);
 
   return (

@@ -32,14 +32,16 @@ export default function HeroSection() {
         >
           <div className="space-y-8">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
-              <span>Next-Gen </span>
+              <span>First-class </span>
+              <br></br>
               <span className="bg-gradient-to-r from-primary via-accent to-green-500 text-transparent bg-clip-text bg-[length:200%_auto] animate-gradient">
-                Game Moderation
+                 Moderation & Support
               </span>
-              <span> & Player Support</span>
+              <br></br>
+              <span> Suite For Gaming</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Handle player reports, moderation, and support tickets with our all-in-one platform designed specifically for game developers.
+              Streamline moderation and support through seamless in-game and web integration for community game servers: Minecraft, FiveM, G-Mod, Rust, and more.
             </p>
             <div className="flex flex-wrap gap-4 pt-3 justify-center">
               <Button 
@@ -47,7 +49,7 @@ export default function HeroSection() {
                 className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 hover:scale-105 transition-transform" 
                 onClick={goToRegistration}
               >
-                Register Your Server for Free
+                Sign Up Free, Forever
               </Button>
               <Button 
                 size="lg" 
@@ -66,26 +68,6 @@ export default function HeroSection() {
           </div>
         </motion.div>
         
-        {/* Stats */}
-        <div className="mt-12 max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { stat: "99.9%", label: "Uptime Reliability" },
-            { stat: "500K+", label: "Monthly API Requests" },
-            { stat: "200+", label: "Game Integrations" },
-            { stat: "24/7", label: "Moderation Support" }
-          ].map((item, index) => (
-            <motion.div 
-              key={index}
-              className="p-6 bg-card rounded-xl border border-gray-800"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
-            >
-              <div className="text-4xl font-bold text-foreground">{item.stat}</div>
-              <div className="text-muted-foreground mt-2">{item.label}</div>
-            </motion.div>
-          ))}
-        </div>
         
         {/* Mission statement section */}
         <motion.div 
@@ -100,7 +82,7 @@ export default function HeroSection() {
             </div>
             <h3 className="text-2xl font-bold mb-4">For server owners, by server owners</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We built modl because we've experienced the challenges of community moderation firsthand. Our team of veteran game server owners created the tools we wished we had - powerful, intuitive, and designed with real gaming communities in mind.
+              Coming from a Minecraft server owner background, we built modl to streamline the numerous inefficiencies that hold back effective moderation and support at scale for gaming communities. Utilizing fully dynamic punishments, 4x iterated UX design, powerful account linking systems, and AI integration, we aim to make moderation and support painless for your team and your players.
             </p>
           </div>
         </motion.div>

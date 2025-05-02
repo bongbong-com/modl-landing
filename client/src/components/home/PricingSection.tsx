@@ -41,7 +41,7 @@ export default function PricingSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Free forever for hobbiests, fair forever when you get serious.
+            Free forever for hobbyists, fair forever when you get serious.
           </p>
         </motion.div>
         

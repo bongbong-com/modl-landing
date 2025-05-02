@@ -188,13 +188,13 @@ export default function FeaturesSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="bg-card rounded-xl border border-gray-800 p-8 text-center">
-            <h3 className="text-2xl font-bold mb-6">Easy Integration with Your Games</h3>
+            <h3 className="text-2xl font-bold mb-6">Easy Integration with Your Server</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { text: "Simple API endpoints for core functionality", delay: 0.1 },
-                { text: "Unity, Unreal, and web SDK support", delay: 0.2 },
-                { text: "Customizable UI components", delay: 0.3 },
-                { text: "Webhook integration for real-time events", delay: 0.4 }
+                { text: "Drag & drop plugin for any platform", delay: 0.1 },
+                { text: "Import from Litebans and other plugins*", delay: 0.2 },
+                { text: "Fully configurable messages and settings", delay: 0.3 },
+                { text: "Low latency web-to-game sync", delay: 0.4 }
               ].map((item, index) => (
                 <motion.div 
                   key={index} 
@@ -208,7 +208,9 @@ export default function FeaturesSection() {
                   <span className="text-left">{item.text}</span>
                 </motion.div>
               ))}
+              
             </div>
+            <p className="text-xs text-muted-foreground mt-4">* Importing from other moderation plugins is available upon request</p>
           </div>
         </motion.div>
       </div>
