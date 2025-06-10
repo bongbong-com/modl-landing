@@ -7,9 +7,10 @@ import { Check } from "lucide-react";
 interface SuccessModalProps {
   show: boolean;
   onClose: () => void;
+  customDomain?: string; // Make customDomain optional
 }
 
-export default function SuccessModal({ show, onClose }: SuccessModalProps) {
+export default function SuccessModal({ show, onClose, customDomain }: SuccessModalProps) {
   const [, navigate] = useLocation();
 
   // Handle escape key press
@@ -40,7 +41,12 @@ export default function SuccessModal({ show, onClose }: SuccessModalProps) {
     onClose();
     // In a real app, this would navigate to the dashboard
     // For now, navigate back to the home page
-    navigate("/");
+    if (customDomain) {
+      window.location.href = `https://${customDomain}.modl.gg`;
+    } else {
+      // Fallback or error handling if customDomain is not available
+      navigate("/");
+    }
   };
 
   return (

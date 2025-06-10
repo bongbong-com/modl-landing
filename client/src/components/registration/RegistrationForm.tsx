@@ -8,11 +8,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import SuccessModal from "./SuccessModal";
+import { Label } from "@/components/ui/label";
 
 const registrationSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -31,16 +30,14 @@ export default function RegistrationForm() {
   const { toast } = useToast();
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [registeredDomain, setRegisteredDomain] = useState<string | undefined>(undefined);
   
-  const initialPlan = new URLSearchParams(window.location.search).get("plan") || "free";
-
   const form = useForm<RegistrationValues>({
     resolver: zodResolver(registrationSchema),
     defaultValues: {
       email: "",
       serverName: "",
       customDomain: "",
-      plan: initialPlan as "free" | "premium",
       agreeTerms: false,
     },
   });
@@ -48,9 +45,15 @@ export default function RegistrationForm() {
   const onSubmit = async (values: RegistrationValues) => {
     setIsSubmitting(true);
     try {
-      const res = await apiRequest("POST", "/api/register", values);
+      // Always submit with free plan - premium upgrades handled in modl-panel
+      const submitData = {
+        ...values,
+        plan: "free" as const
+      };
+      const res = await apiRequest("POST", "/api/register", submitData);
       if (res.ok) {
         setShowSuccess(true);
+        setRegisteredDomain(values.customDomain); // Save the custom domain
       }
     } catch (error) {
       toast({
@@ -69,7 +72,7 @@ export default function RegistrationForm() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SuccessModal show={showSuccess} onClose={() => setShowSuccess(false)} />
+      <SuccessModal show={showSuccess} onClose={() => setShowSuccess(false)} customDomain={registeredDomain} />
       
       <nav className="bg-background/90 backdrop-blur border-b border-gray-800 p-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -91,7 +94,7 @@ export default function RegistrationForm() {
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold mb-2">Register your server</h2>
               <p className="text-muted-foreground">
-                Create a panel for your server and start using in minutes.
+                Create a panel for your server and start using in minutes with our free plan.
               </p>
             </div>
             
