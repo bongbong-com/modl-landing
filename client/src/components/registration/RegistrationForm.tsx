@@ -148,12 +148,18 @@ export default function RegistrationForm() {
                       <FormLabel>
                         Panel Subdomain <span className="text-red-500">*</span>
                       </FormLabel>
-                      <div className="flex items-center">
-                          <Input {...field} placeholder="your-server" className="rounded-r-none focus:z-10" />
-                          <span className="px-4 inline-flex items-center min-w-fit rounded-r-md border border-l-0 border-input bg-background text-sm text-muted-foreground">
-                            .{process.env.APP_DOMAIN || "modl.gg"}
-                          </span>
+                      <div className="flex">
+                        <FormControl>
+                          <Input
+                            placeholder="yourserver"
+                            {...field}
+                            className="px-4 py-3 rounded-l-md bg-card/50 border border-gray-700 text-foreground focus:outline-none focus:border-primary"
+                          />
+                        </FormControl>
+                        <div className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-700 bg-card/80 text-muted-foreground">
+                          .{process.env.APP_DOMAIN || 'modl.gg'}
                         </div>
+                      </div>
                       <p className="text-muted-foreground text-xs mt-1">You can setup your own custom domain after registration</p>
                       <FormMessage />
                     </FormItem>
