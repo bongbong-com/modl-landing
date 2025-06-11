@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { z } from "zod";
 import nodemailer from "nodemailer"; // Added
 import crypto from "crypto"; // Added
+import 'dotenv/config';
 
 // Define registration schema
 const registrationSchema = z.object({
