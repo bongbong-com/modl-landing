@@ -58,7 +58,7 @@ export default function RegistrationForm() {
     } catch (error) {
       toast({
         title: "Registration failed",
-        description: error instanceof Error ? error.message : "Please try again later",
+        description: error instanceof Error ? JSON.parse(error.message.substring(4)).message : "Please try again later", // substring 4 to remove '500: ' from the beginning of JSON string
         variant: "destructive",
       });
     } finally {

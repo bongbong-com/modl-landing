@@ -1,17 +1,4 @@
-import { pgTable, text, serial, integer, boolean } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
-});
-
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
 
 // Define registration schema
 export const registrationSchema = z.object({
@@ -24,6 +11,17 @@ export const registrationSchema = z.object({
   }),
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
 export type Registration = z.infer<typeof registrationSchema>;
+
+// Define server schema (conceptual for MongoDB)
+export const serverSchema = z.object({
+  adminEmail: z.string().email(),
+  serverName: z.string(),
+  customDomain: z.string(),
+  plan: z.enum(["free", "premium"]),
+  emailVerificationToken: z.string().optional(), // Added
+  emailVerified: z.boolean().default(false).optional(), // Added
+});
+
+export type InsertServer = z.infer<typeof serverSchema>;
+export type Server = InsertServer & { id: string; };
