@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface SuccessModalProps {
   show: boolean;
@@ -36,18 +36,6 @@ export default function SuccessModal({ show, onClose, customDomain }: SuccessMod
       document.body.style.overflow = "unset";
     };
   }, [show]);
-
-  const handleContinue = () => {
-    onClose();
-    // In a real app, this would navigate to the dashboard
-    // For now, navigate back to the home page
-    if (customDomain) {
-      window.location.href = `https://${customDomain}.modl.gg`;
-    } else {
-      // Fallback or error handling if customDomain is not available
-      navigate("/");
-    }
-  };
 
   return (
     <AnimatePresence>
@@ -99,17 +87,23 @@ export default function SuccessModal({ show, onClose, customDomain }: SuccessMod
             </motion.p>
             
             <motion.div
+              className="flex justify-center"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Button 
-                onClick={handleContinue}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+              <Button
+                onClick={() => {
+                  onClose();
+                  navigate("/");
+                }}
+                variant="default"
+                className="w-full"
               >
-                Continue to Dashboard
+                Close
               </Button>
             </motion.div>
+            
           </motion.div>
         </div>
       )}

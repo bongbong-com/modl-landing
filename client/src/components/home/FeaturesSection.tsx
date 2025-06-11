@@ -19,7 +19,7 @@ const features = [
     description: "Seamlessly connect player accounts across platforms for comprehensive moderation.",
     expandedContent: "Link player identities across Discord, Steam, Xbox, PlayStation and more to maintain a unified moderation record. Prevent banned players from evading punishments with new accounts, and let players access support from any platform. Our API handles the complex identity verification and merging, while giving you complete control over permission levels and cross-platform capabilities.",
     bgColor: "bg-accent/20",
-    textColor: "text-accent"
+    textColor: "text-neutral-400"
   },
   {
     icon: "headphones",
@@ -43,7 +43,7 @@ const features = [
     description: "Embed moderation interfaces directly within your game for seamless player experience.",
     expandedContent: "We provide SDKs for Unity, Unreal Engine, and other popular game engines to embed moderation interfaces directly in your game. Players can submit reports, check their status, and appeal decisions without leaving your game. Custom UI components can be styled to match your game's aesthetic perfectly. For web-based or mobile games, our responsive design ensures a great experience across all devices.",
     bgColor: "bg-accent/20",
-    textColor: "text-accent"
+    textColor: "text-neutral-400"
   },
   {
     icon: "layout-dashboard",

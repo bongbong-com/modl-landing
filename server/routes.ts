@@ -38,6 +38,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         host: "localhost", // Assuming postfix is running on localhost
         port: 25,
         secure: false, // true for 465, false for other ports
+        tls: {
+          rejectUnauthorized: false // Allow self-signed certificates
+        }
       });
 
       const verificationLink = `http://${serverInfo.customDomain}.${process.env.DOMAIN || 'modl.pro'}/verify-email?token=${emailVerificationToken}`;

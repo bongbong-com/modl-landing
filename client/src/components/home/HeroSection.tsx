@@ -77,7 +77,7 @@ export default function HeroSection() {
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           <div className="relative py-10 px-8 rounded-2xl border border-gray-800 bg-card/60 backdrop-blur-sm">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary/20 px-4 py-1 rounded-full text-sm font-semibold text-primary">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gray-900 px-4 py-1 rounded-full text-sm font-semibold text-primary">
               OUR MISSION
             </div>
             <h3 className="text-2xl font-bold mb-4">For server owners, by server owners</h3>
