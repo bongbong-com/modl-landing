@@ -43,7 +43,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       });
 
-      const verificationLink = `https://${serverInfo.customDomain}.modl.gg/verify-email?token=${emailVerificationToken}`;
+      const appDomain = process.env.APP_DOMAIN || "modl.gg";
+      const verificationLink = `https://${serverInfo.customDomain}.${appDomain}/verify-email?token=${emailVerificationToken}`;
 
       await transporter.sendMail({
         from: '"modl" <noreply@cobl.gg>', // sender address

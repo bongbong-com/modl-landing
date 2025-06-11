@@ -16,6 +16,9 @@ export default defineConfig({
         ]
       : []),
   ],
+  define: {
+    'process.env.APP_DOMAIN': JSON.stringify(process.env.APP_DOMAIN || 'modl.gg')
+  },
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),

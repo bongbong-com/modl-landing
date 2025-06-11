@@ -1,5 +1,6 @@
 import { type InsertServer, type Server } from "@shared/schema";
 import { MongoClient } from "mongodb";
+import 'dotenv/config';
 
 // modify the interface with any CRUD methods
 // you might need
