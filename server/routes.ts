@@ -20,24 +20,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = registrationSchema.parse(req.body);
       
-      // Create a new user
-      const user = await storage.createUser({
-        username: validatedData.email,
-        password: "hashed_password_would_go_here", // In a real app, you'd hash this
+      // Create the server entry in MongoDB and its dedicated database
+      const serverInfo = await storage.createServer({
+        adminEmail: validatedData.email,
+        serverName: validatedData.serverName,
+        customDomain: validatedData.customDomain,
+        plan: validatedData.plan,
       });
-      
-      // In a real app, you would:
-      // 1. Store the server name and custom domain
-      // 2. Set up the user's moderation account
-      // 3. Send a verification email
-      // 4. Handle payment information for premium plan
       
       return res.status(201).json({ 
         success: true, 
-        message: "Registration successful",
-        user: {
-          id: user.id,
-          email: user.username
+        message: "Registration successful. Server created.",
+        server: {
+          id: serverInfo.id,
+          name: serverInfo.serverName,
+          database: serverInfo.databaseName
         }
       });
     } catch (error) {
