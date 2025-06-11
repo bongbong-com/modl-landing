@@ -19,7 +19,9 @@ export const serverSchema = z.object({
   serverName: z.string(),
   customDomain: z.string(),
   plan: z.enum(["free", "premium"]),
+  emailVerificationToken: z.string().optional(), // Added
+  emailVerified: z.boolean().default(false).optional(), // Added
 });
 
 export type InsertServer = z.infer<typeof serverSchema>;
-export type Server = InsertServer & { id: string; databaseName: string };
+export type Server = InsertServer & { id: string; };
