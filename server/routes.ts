@@ -6,6 +6,10 @@ import nodemailer from "nodemailer"; // Added
 import crypto from "crypto"; // Added
 import 'dotenv/config';
 
+// Rate limiting for registration - stores IP addresses and their last registration time
+const registrationRateLimit = new Map<string, number>();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes in milliseconds
+
 // Define registration schema
 const registrationSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -21,6 +25,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Registration endpoint
   app.post("/api/register", async (req, res) => {
     try {
+      // Get client IP address
+      const clientIP = req.ip || req.connection.remoteAddress || req.socket.remoteAddress || 
+                      (req.connection as any)?.socket?.remoteAddress || 'unknown';
+      
+      // Check rate limit
+      const now = Date.now();
+      const lastRegistration = registrationRateLimit.get(clientIP);
+      
+      if (lastRegistration && (now - lastRegistration) < RATE_LIMIT_WINDOW_MS) {
+        const remainingTime = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - lastRegistration)) / 1000 / 60);
+        return res.status(429).json({
+          success: false,
+          message: `Rate limit exceeded. You can only register one server every 10 minutes. Please try again in ${remainingTime} minute${remainingTime !== 1 ? 's' : ''}.`
+        });
+      }
+
       const validatedData = registrationSchema.parse(req.body);
       const emailVerificationToken = crypto.randomBytes(32).toString("hex"); // Added
       
@@ -32,6 +52,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         plan: validatedData.plan,
         emailVerificationToken, // Added
         emailVerified: false, // Added
+      });
+
+      // Update rate limit tracking - only after successful registration
+      registrationRateLimit.set(clientIP, now);
+        // Clean up old entries (optional optimization)
+      registrationRateLimit.forEach((timestamp, ip) => {
+        if (now - timestamp > RATE_LIMIT_WINDOW_MS) {
+          registrationRateLimit.delete(ip);
+        }
       });
 
       // Send verification email
