@@ -5,21 +5,11 @@ import { z } from "zod";
 import nodemailer from "nodemailer"; // Added
 import crypto from "crypto"; // Added
 import 'dotenv/config';
+import { registrationSchema } from 'modl-shared-web';
 
 // Rate limiting for registration - stores IP addresses and their last registration time
 const registrationRateLimit = new Map<string, number>();
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes in milliseconds
-
-// Define registration schema
-const registrationSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  serverName: z.string().min(3, { message: "Server name is required (min 3 characters)" }),
-  customDomain: z.string().min(3, { message: "Subdomain is required (min 3 characters)" }),
-  plan: z.enum(["free", "premium"]).default("free"),
-  agreeTerms: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to the terms to continue" }),
-  }),
-});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Registration endpoint
