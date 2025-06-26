@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { Button } from "@/components/ui/button";
+import { Button } from "modl-shared-web/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {

@@ -1,6 +1,6 @@
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Button } from "modl-shared-web/components/ui/button";
 import { PresentationIcon } from "lucide-react";
 
 export default function CTASection() {
