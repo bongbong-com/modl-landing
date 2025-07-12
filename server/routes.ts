@@ -19,12 +19,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const clientIP = req.ip || req.connection.remoteAddress || req.socket.remoteAddress || 
                       (req.connection as any)?.socket?.remoteAddress || 'unknown';
       
+      console.log(`Registration attempt from IP: ${clientIP}`);
+      console.log(`Current rate limit map size: ${registrationRateLimit.size}`);
+      console.log(`Rate limit entries:`, Array.from(registrationRateLimit.entries()));
+      
       // Check rate limit
       const now = Date.now();
       const lastRegistration = registrationRateLimit.get(clientIP);
       
+      console.log(`Last registration for IP ${clientIP}: ${lastRegistration}`);
+      console.log(`Time since last registration: ${lastRegistration ? now - lastRegistration : 'N/A'}ms`);
+      
       if (lastRegistration && (now - lastRegistration) < RATE_LIMIT_WINDOW_MS) {
         const remainingTime = Math.ceil((RATE_LIMIT_WINDOW_MS - (now - lastRegistration)) / 1000 / 60);
+        console.log(`Rate limit triggered for IP ${clientIP}, remaining time: ${remainingTime} minutes`);
         return res.status(429).json({
           success: false,
           message: `Rate limit exceeded. You can only register one server every 10 minutes. Please try again in ${remainingTime} minute${remainingTime !== 1 ? 's' : ''}.`
@@ -46,12 +54,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Update rate limit tracking - only after successful registration
       registrationRateLimit.set(clientIP, now);
-        // Clean up old entries (optional optimization)
+      console.log(`Rate limit updated for IP ${clientIP} at ${now}`);
+      
+      // Clean up old entries (optional optimization)
+      const sizeBefore = registrationRateLimit.size;
       registrationRateLimit.forEach((timestamp, ip) => {
         if (now - timestamp > RATE_LIMIT_WINDOW_MS) {
           registrationRateLimit.delete(ip);
         }
       });
+      console.log(`Rate limit cleanup: ${sizeBefore} -> ${registrationRateLimit.size} entries`);
 
       // Send verification email
       const transporter = nodemailer.createTransport({

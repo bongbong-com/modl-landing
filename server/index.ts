@@ -4,6 +4,7 @@ import { setupVite, serveStatic, log } from "./vite";
 import 'dotenv/config';
 
 const app = express();
+app.set('trust proxy', true); // Trust X-Forwarded-For headers from proxies
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
