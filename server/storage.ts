@@ -27,7 +27,13 @@ export class MemStorage implements IStorage {
     // this.currentServerId = 1;
     // Replace with your MongoDB connection string
     const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
-    this.mongoClient = new MongoClient(uri);
+    this.mongoClient = new MongoClient(uri, {
+      maxPoolSize: 50, // Maintain up to 50 socket connections
+      serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+      socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+      connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+      bufferMaxEntries: 0 // Disable mongoose buffering
+    });
     this.connectMongo();
   }
 
