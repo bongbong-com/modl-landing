@@ -31,8 +31,7 @@ export class MemStorage implements IStorage {
       maxPoolSize: 50, // Maintain up to 50 socket connections
       serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-      connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
-      bufferMaxEntries: 0 // Disable mongoose buffering
+      connectTimeoutMS: 10000 // Give up initial connection after 10 seconds
     });
     this.connectMongo();
   }
@@ -43,7 +42,8 @@ export class MemStorage implements IStorage {
       console.log("Connected to MongoDB");
     } catch (error) {
       console.error("Failed to connect to MongoDB", error);
-      // In a real application, you might want to throw an error or implement retry logic
+      // Throw an error to prevent application startup if database is critical
+      throw new Error(`MongoDB Connection Error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
