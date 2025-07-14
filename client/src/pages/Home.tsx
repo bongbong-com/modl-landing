@@ -17,9 +17,9 @@ export default function Home() {
 
   return (
     <div className="bg-background text-foreground font-sans min-h-screen relative overflow-x-hidden">
-      <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
+      {/* <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
         <Particles className="absolute inset-0" quantity={30} />
-      </div>
+      </div> */}
       <Navbar />
       <HeroSection />
       <FeaturesSection />

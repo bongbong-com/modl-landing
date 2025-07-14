@@ -47,7 +47,7 @@ export default function Navbar() {
               <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors duration-200" onClick={(e) => { e.preventDefault(); scrollToSection("pricing"); }}>Pricing</a>
               <a href="#faq" className="text-muted-foreground hover:text-foreground transition-colors duration-200" onClick={(e) => { e.preventDefault(); scrollToSection("faq"); }}>FAQ</a>
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={goToRegistration}>
-                Register Your Server For Free
+                Register for Free
               </Button>
             </div>
             <div className="md:hidden flex items-center">

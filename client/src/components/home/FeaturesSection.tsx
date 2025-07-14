@@ -126,7 +126,7 @@ export default function FeaturesSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Powerful Moderation Tools</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to keep your gaming community safe, engaged, and thriving
+            Everything you need to keep your Minecraft community safe, engaged, and thriving
           </p>
         </motion.div>
         

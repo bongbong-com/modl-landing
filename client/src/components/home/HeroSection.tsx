@@ -41,7 +41,7 @@ export default function HeroSection() {
               <span> Suite For Gaming</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Streamline moderation and support through seamless in-game and web integration for community game servers: Minecraft, FiveM, G-Mod, Rust, and more.
+              Streamline moderation and support through seamless in-game and web integration for Minecraft.
             </p>
             <div className="flex flex-wrap gap-4 pt-3 justify-center">
               <Button 
@@ -82,7 +82,7 @@ export default function HeroSection() {
             </div>
             <h3 className="text-2xl font-bold mb-4">For server owners, by server owners</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Coming from a Minecraft server owner background, we built modl to streamline the numerous inefficiencies that hold back effective moderation and support at scale for gaming communities. Utilizing fully dynamic punishments, 4x iterated UX design, powerful account linking systems, and AI integration, we aim to make moderation and support painless for your team and your players.
+              Coming from a Minecraft server owner background, we built modl.gg to streamline the numerous inefficiencies that hold back effective moderation and support at scale for gaming communities. Utilizing fully dynamic punishments, AI integration, and a specialized web panel, we aim to make moderation and support painless for your team and your players.
             </p>
           </div>
         </motion.div>
