@@ -9,24 +9,16 @@ import {
 
 const FAQData = [
   {
-    question: "How easy is it to integrate modl with my game?",
-    answer: "Integration is straightforward with our comprehensive SDKs for Unity, Unreal Engine, and other popular game engines. We also provide a RESTful API for custom integrations. Most developers can complete basic integration in less than a day."
+    question: "How easy is it to install?",
+    answer: "Register your server, install the plugin on your proxy or server, plug in the API key and you're good to go!"
   },
   {
     question: "Can I customize the moderation rules for my game?",
-    answer: "Absolutely! modl provides extensive customization options for moderation rules. You can adjust sensitivity levels, create custom word filters, define punishment escalation paths, and even train AI models specific to your game's context and community standards."
+    answer: "Absolutely! Everything is fully customizable, with smart & thought-out defaults we let you tweak everything from locale messages to punishment types."
   },
   {
-    question: "What happens if I exceed my API request limit?",
-    answer: "If you exceed your monthly API request limit, you can purchase additional capacity at $1 per 50K requests. We'll notify you when you reach 80% of your limit so you can plan accordingly. We never cut off service unexpectedly - your moderation will continue to function even if you exceed your limit."
-  },
-  {
-    question: "Is modl GDPR and COPPA compliant?",
-    answer: "Yes, modl is fully compliant with GDPR, COPPA, and other major privacy regulations. We provide data processing agreements, clear privacy policies, and tools to help you meet regulatory requirements. Our systems are designed with privacy and data protection in mind."
-  },
-  {
-    question: "Can I migrate from another moderation system?",
-    answer: "We offer migration tools and support to help you transition from other moderation systems. Our team can assist with importing historical data, mapping existing rules to our platform, and providing training for your moderation team to ensure a smooth transition."
+    question: "Can I migrate from Litebans?",
+    answer: "Yes, we offer migration tools from Litebans to import all of your current punishments (coming soon)."
   }
 ];
 

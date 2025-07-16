@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "modl-shared-web/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [, navigate] = useLocation();
 
   useEffect(() => {
@@ -24,7 +22,6 @@ export default function Navbar() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMobileMenuOpen(false);
   };
 
   const goToRegistration = () => {
@@ -51,64 +48,13 @@ export default function Navbar() {
               </Button>
             </div>
             <div className="md:hidden flex items-center">
-              <Button variant="ghost" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" onClick={goToRegistration}>
+                Register Now
               </Button>
             </div>
           </div>
         </div>
       </div>
-      
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div 
-            className="md:hidden bg-background/95 backdrop-blur border-b border-gray-800 shadow-lg"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a 
-                href="#features" 
-                className="block px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent/10"
-                onClick={(e) => { e.preventDefault(); scrollToSection("features"); }}
-              >
-                Features
-              </a>
-              <a 
-                href="#pricing" 
-                className="block px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent/10"
-                onClick={(e) => { e.preventDefault(); scrollToSection("pricing"); }}
-              >
-                Pricing
-              </a>
-              <a 
-                href="#testimonials" 
-                className="block px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent/10"
-                onClick={(e) => { e.preventDefault(); scrollToSection("testimonials"); }}
-              >
-                Testimonials
-              </a>
-              <a 
-                href="#faq" 
-                className="block px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent/10"
-                onClick={(e) => { e.preventDefault(); scrollToSection("faq"); }}
-              >
-                FAQ
-              </a>
-              <Button 
-                className="w-full mt-3 bg-primary hover:bg-primary/90 text-primary-foreground"
-                onClick={goToRegistration}
-              >
-                Get Started
-              </Button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
   );
 }

@@ -184,7 +184,7 @@ export default function RegistrationForm() {
                           htmlFor="agree-terms"
                           className="text-sm text-foreground cursor-pointer"
                         >
-                          I agree to the <a href="#" className="text-primary hover:text-primary/80">Terms of Service</a> and <a href="#" className="text-primary hover:text-primary/80">Privacy Policy</a>
+                          I agree to the <a href="/terms" className="text-primary hover:text-primary/80" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="/privacy" className="text-primary hover:text-primary/80" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                         </Label>
                         <FormMessage />
                       </div>

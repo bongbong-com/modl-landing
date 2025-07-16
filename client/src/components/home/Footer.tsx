@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
 
-const productLinks = ["Features", "Pricing", "Integrations", "Changelog", "Documentation"];
-const resourceLinks = ["Blog", "Community", "Case Studies", "Help Center", "API Reference"];
-const companyLinks = ["About Us", "Careers", "Contact", "Privacy Policy", "Terms of Service"];
-
 export default function Footer() {
   return (
     <footer className="bg-background py-6 border-t border-gray-800">
@@ -20,9 +16,8 @@ export default function Footer() {
             <span className="ml-2 text-xs text-muted-foreground mt-1">BETA</span>
           </div>
           <div className="flex space-x-6">
-            <a href="#" className="text-muted-foreground hover:text-foreground text-sm">Privacy Policy</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground text-sm">Terms of Service</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground text-sm">Cookie Policy</a>
+            <a href="/privacy" className="text-muted-foreground hover:text-foreground text-sm">Privacy Policy</a>
+            <a href="/terms" className="text-muted-foreground hover:text-foreground text-sm">Terms of Service</a>
             <div className="text-muted-foreground text-sm mb-4 md:mb-0">
               &copy; {new Date().getFullYear()} All rights reserved.
             </div>

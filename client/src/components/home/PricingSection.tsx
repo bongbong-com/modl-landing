@@ -5,17 +5,17 @@ import { Button } from "modl-shared-web/components/ui/button";
 
 const freePlanFeatures = [
   "Up to 15 staff members",
-  "100K Monthly API requests",
   "Full-feature moderation & support suite",
+  "2GB CDN Storage",
   "No ads, no gimmicks",
   "Community & developer support"
 ];
 
 const premiumPlanFeatures = [
   "Unlimited staff members",
-  "Unlimited API requests",
+  "Full-feature moderation & support suite",
   "200GB CDN Storage ($0.05/GB/Month after)",
-  "Beta AI chat moderation & tickets",
+  "Beta AI chat moderation & tickets access",
   "Priority developer support",
 ];
 
@@ -60,7 +60,7 @@ export default function PricingSection() {
                 <span className="text-4xl font-bold">$0</span>
                 <span className="text-muted-foreground ml-2">/month</span>
               </div>
-              <p className="mt-4 text-muted-foreground">Free forever for growing communities (~ &lt;100 concurrent players).</p>
+              <p className="mt-4 text-muted-foreground">Free forever for growing communities.</p>
               
               <ul className="mt-6 space-y-4">
                 {freePlanFeatures.map((feature, index) => (
@@ -73,7 +73,7 @@ export default function PricingSection() {
                     transition={{ duration: 0.3, delay: 0.1 + (index * 0.05) }}
                   >
                     <Check className="text-green-500 mt-1 mr-2" />
-                    <span dangerouslySetInnerHTML={{ __html: feature.replace(/\b(15|100K|Full-feature|no gimmicks|Community)\b/g, '<b>$1</b>') }}></span>
+                    <span dangerouslySetInnerHTML={{ __html: feature.replace(/\b(15|Full-feature|CDN|no gimmicks|Community)\b/g, '<b>$1</b>') }}></span>
                   </motion.li>
                 ))}
               </ul>
@@ -107,7 +107,7 @@ export default function PricingSection() {
                     transition={{ duration: 0.3, delay: 0.2 + (index * 0.05) }}
                   >
                     <Check className="text-green-500 mt-1 mr-2" />
-                    <span dangerouslySetInnerHTML={{ __html: feature.replace(/\b(Unlimited|AI|Priority|CDN)\b/g, '<b>$1</b>') }}></span>
+                    <span dangerouslySetInnerHTML={{ __html: feature.replace(/\b(Unlimited|Full-feature|AI|Priority|CDN)\b/g, '<b>$1</b>') }}></span>
                   </motion.li>
                 ))}
               </ul>
