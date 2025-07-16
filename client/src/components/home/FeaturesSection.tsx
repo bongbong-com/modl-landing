@@ -7,49 +7,49 @@ import { Button } from "modl-shared-web/components/ui/button";
 const features = [
   {
     icon: "shield-check",
-    title: "Dynamic Punishments",
+    title: "Smart Punishments",
     description: "Create customizable punishment systems that scale with player behavior patterns.",
-    expandedContent: "Our dynamic punishment system automatically escalates consequences based on a player's history. First offenses might receive warnings, while repeat offenders face more severe actions. You can customize escalation paths for different violation types, set time decay for older infractions, and ensure consistency across your entire moderation team. This system dramatically reduces repeat offenses and creates a fairer experience for your community.",
+    expandedContent: "Our dynamic punishment system utilizes a point system to calculate punishment lengths based on severity (discretionary to staff) and points (based on player history). You can also set custom rules, such as automatically unbanning after a player changes his/her skin or username. These are just some of the features of our smart-punishment system.",
     bgColor: "bg-primary/20",
     textColor: "text-primary"
   },
   {
     icon: "link",
     title: "Account Linking",
-    description: "Seamlessly connect player accounts across platforms for comprehensive moderation.",
-    expandedContent: "Link player identities across Discord, Steam, Xbox, PlayStation and more to maintain a unified moderation record. Prevent banned players from evading punishments with new accounts, and let players access support from any platform. Our API handles the complex identity verification and merging, while giving you complete control over permission levels and cross-platform capabilities.",
+    description: "Never issue a ban evasion punishment ever again or mangle with ip-bans .",
+    expandedContent: "Automatically link accounts and issue alt-blocking punishments. Handle each linked ban independently, allowing for effortless appeals of siblings and other exceptions.",
     bgColor: "bg-accent/20",
     textColor: "text-neutral-400"
   },
   {
     icon: "headphones",
     title: "Support Tickets",
-    description: "Integrated ticketing system for player reports, appeals, and bug submissions.",
-    expandedContent: "Our comprehensive ticket system handles player reports, chat reports, bug reports, and punishment appeals through a unified interface. Staff can assign tickets, track resolution status, and maintain detailed logs. Players can submit tickets directly from within your game or through connected platforms like Discord. Customizable templates and automated responses help streamline common request types.",
+    description: "Integrated ticketing system for reports, appeals, bugs, applications, and support",
+    expandedContent: "Customize forms, quick-responses, notify players in-game and via email of ticket updates, and monitor how response times. For example, appeals automatically gather punishment information and you can pardon/reduce bans with 1 click.",
     bgColor: "bg-green-500/20",
     textColor: "text-green-500"
   },
   {
     icon: "bot",
     title: "AI Auto-Moderation",
-    description: "Advanced AI systems that detect and respond to toxic behavior in real-time.",
-    expandedContent: "Our AI auto-moderation detects toxic language, spam, and harassment in real-time. Unlike basic keyword filters, our system understands context and can be fine-tuned to match your community standards. It learns from moderator actions to improve over time and can automatically handle routine violations while escalating complex cases to your team. Premium users get access to the latest language models for even more accurate detection.",
+    description: "AI systems that detect and respond to chat violations in real-time.",
+    expandedContent: "Our highly customizable AI helper is able to analyze chat responses against a custom set of rules in real-time and issue real-time or manually-verified punishments with ease.",
     bgColor: "bg-primary/20",
     textColor: "text-primary"
   },
   {
     icon: "globe",
     title: "Web Integration",
-    description: "Embed moderation interfaces directly within your game for seamless player experience.",
-    expandedContent: "We provide SDKs for Unity, Unreal Engine, and other popular game engines to embed moderation interfaces directly in your game. Players can submit reports, check their status, and appeal decisions without leaving your game. Custom UI components can be styled to match your game's aesthetic perfectly. For web-based or mobile games, our responsive design ensures a great experience across all devices.",
+    description: "Stay in control of your server anywhere you go with the web.",
+    expandedContent: "A web interface that allows you to manage your server more efficiently than ever before alongside comprehensive in-game tools.",
     bgColor: "bg-accent/20",
     textColor: "text-neutral-400"
   },
   {
     icon: "layout-dashboard",
     title: "Analytics Dashboard",
-    description: "Comprehensive reports and insights on community health and moderator activity.",
-    expandedContent: "Our analytics dashboard gives you deep insights into your community's health. Track moderation trends over time, identify problem areas, measure moderator performance, and detect patterns of toxic behavior. Custom reports can be scheduled and exported for team reviews. Use data-driven insights to make informed decisions about your moderation policies and community management strategies.",
+    description: "Comprehensive reports and insights on trends and moderator activity.",
+    expandedContent: "Our analytics dashboard gives you deep insights into moderation trends, support trends, and staff activity. Take actions such as rollingback staff punishments, adjusting punishment lengths, and more to combat bad actors.",
     bgColor: "bg-green-500/20",
     textColor: "text-green-500"
   }
@@ -126,7 +126,7 @@ export default function FeaturesSection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">Powerful Moderation Tools</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to keep your Minecraft community safe, engaged, and thriving
+            Everything you need to keep your Minecraft community safe, engaged, and supported
           </p>
         </motion.div>
         

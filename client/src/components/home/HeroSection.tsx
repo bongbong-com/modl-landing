@@ -30,7 +30,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <div className="space-y-8">
+          <div className="space-y-4">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
               <span>First-class </span>
               <br></br>
@@ -38,10 +38,10 @@ export default function HeroSection() {
                  Moderation & Support
               </span>
               <br></br>
-              <span> Suite For Gaming</span>
+              <span> Suite For Minecraft</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Streamline moderation and support through seamless in-game and web integration for Minecraft.
+              Streamline moderation and support through seamless integration.
             </p>
             <div className="flex flex-wrap gap-4 pt-3 justify-center">
               <Button 
@@ -82,7 +82,11 @@ export default function HeroSection() {
             </div>
             <h3 className="text-2xl font-bold mb-4">For server owners, by server owners</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Coming from a Minecraft server owner background, we built modl.gg to streamline the numerous inefficiencies that hold back effective moderation and support at scale for gaming communities. Utilizing fully dynamic punishments, AI integration, and a specialized web panel, we aim to make moderation and support painless for your team and your players.
+              Coming from a Minecraft server owner background, we built MODL to streamline
+               the numerous inefficiencies that hold back effective moderation and support
+                at scale for gaming communities. Utilizing fully dynamic punishments, AI
+                 integration, and a beautiful web panel, we aim to make moderation and support painless
+                  for your team and your players.
             </p>
           </div>
         </motion.div>
